@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta property="og:title" content="v72">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <title>v72</title>
+    <link id="favicon" rel="icon" type="image/png" href="favicon-32x32.png">
+    <script type="text/javascript">
+        window.isChrome = /chrome/.test(navigator.userAgent.toLowerCase())
+        window.ASSETS_ROOT = ""
+        window.EnvConfig = {}
+        MC = {
+            onSocketOpen() {},
+            onSocketClosed() {},
+            forwardProtoMessage() {},
+            updateConfigurationID() {},
+        }
+        window.googletag = {
+            cmd: []
+        }
+        window.adSlots = {}
+        window.refreshAd = window.destroyAd = () => {}
+    </script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="./skin.js"></script>
+    <link href="./style.css" rel="stylesheet">
+    <script src="./i18n.js?v=72"></script>
+    <script src="./agar.io.js?v=72"></script>
+    <script src="./macro.js"></script>
+
+</head>
+
+<body>
+<div class="modal fade" id="inPageModal" role="dialog">
+      <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="debug-overlay"></div>
+    <div id="overlays" style="display:none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 200">
+        <div class="gamepad_alert" id="controller_alert_connected" style="display:none">
+            <div class="wrapper"><span class="controller_icon"> </span><span class="alert_text">Controller Connected</span></div>
+        </div>
+        <div class="gamepad_alert" id="controller_alert_disconnected" style="display:none">
+            <div class="wrapper"><span class="controller_icon"> </span><span class="alert_text">Controller Disconnected</span></div>
+        </div>
+        <div id="helloContainer" data-logged-in="1">
+            <div class="v72-panel" id="mainPanel">
+                <div role="form" novalidate="">
+              
+                    <div style="float: left; margin-left: 20px">
+                        <h2>Old Agar.io</h2>
+                    <br>
+                    <br>
+                    
+                    </div>
+                    
+
+<div class="form-group clearfix"><input class="form-control" id="nick" placeholder="Nick" maxlength="9999999" autofocus="" style="width:100%"></div>
+                   <div class="form-group clearfix">
+                   <p style="text-align: center;"> Add &lt; skinname &gt; in your username for skins.</p>
+                   <hr style="bottom:370px;width:100%;margin:0px">
+                   </div>
+                    <div class="form-group clearfix"><input style="float:left; width: 70%;" id="serverIP" class="form-control" placeholder="Server IP" maxlength="205"><button style="float:right;" onclick="connect($('#serverIP').val(), $('#token').val()); return false;" type="button" class="btn btn-success">Connect</button></div>
+                     <div class="form-group" id="v72-main-buttons">
+
+                        <div class="row"><button class="btn btn-info btn-settings" type="button" onclick="toggleSettings(); return false;"><i class="glyphicon glyphicon-cog"></i></button><button class="btn btn-play btn-primary btn-needs-server" type="submit" onclick="setNick(document.getElementById('nick').value); return false;" data-itr="play"></button></div>
+                    </div>
+
+                    <div class="checkbox" id="settings" style="display:none">
+                        <div style="float: left; width: 200px">
+                            <div id="locationKnown"></div>
+                            <div id="settingsChoice"><select class="form-control" id="quality" onchange="setQuality($('#quality').val());" required=""><option disabled="" value="" data-itr="page_graphics_title"></option><option value="High" selected="" data-itr="page_graphics_high"></option><option value="Medium" data-itr="page_graphics_medium"></option><option value="Low" data-itr="page_graphics_low"></option><option value="Auto" data-itr="page_graphics_auto"></option></select></div>
+                            <div id="options" style="margin: 6px; font-size: 12px"><label><input id="noSkins" type="checkbox" onchange="setSkins(!$(this).is(':checked'));"><span data-itr="option_no_skins"></span></label><label><input id="noNames" type="checkbox" onchange="setNames(!$(this).is(':checked'));"><span data-itr="option_no_names"></span></label><label><input id="noColors" type="checkbox" onchange="setColors($(this).is(':checked'));"><span data-itr="option_no_colors"></span></label><label><input id="showMass" type="checkbox" onchange="setShowMass($(this).is(':checked'));"><span data-itr="option_show_mass"></span></label><label><input id="darkTheme" type="checkbox" onchange="setDarkTheme($(this).is(':checked'));"><span data-itr="option_dark_theme"></span></label><label><input id="skipStats" type="checkbox" onchange="setSkipStats($(this).is(':checked'));"><span data-itr="option_skip_stats"></span></label></div>
+                        </div>
+
+
+                        <div style="float: right; width: 120px"><button onclick="spectate(); return false;" disabled class="btn btn-warning btn-spectate btn-needs-server" data-itr="spectate"></button></div><br clear="both">
+                        <div id="tags-container"><span id="user-id-tag"></span><span id="version-tag"></span></div>
+                    </div>
+                    
+            
+        <hr/>
+        <center><h5><b>Agario Minions controls:</b><br><br><sub>you can control your bot by pressing "Q"</sub><br><br>W=Fast eject<br><br>X=Fast split<br><br>F=Freeze bots<br><br><h4 style="color:red;">Client of <a target="blanck" href="https://github.com/SAV-404">SAV-404</a></h4>.</p><h5>
+         
+        </center>
+      </div>
+      </center>
+      </div></div>
+
+            <div class="v72-panel" id="stats" style="display: none">
+                <h2>
+                    <center>Match Results</center>
+                </h2><canvas id="statsGraph" width="350" height="230"></canvas>
+                <div id="statsPelletsContainer"><span class="stats-food-eaten" id="statsText"></span><span id="statsSubtext" data-itr="stats_food_eaten"></span></div>
+                <div id="statsHighestMassContainer"><span class="stats-highest-mass" id="statsText"></span><span id="statsSubtext" data-itr="stats_highest_mass"></span></div>
+                <div id="statsTimeAliveContainer"><span class="stats-time-alive" id="statsText"></span><span id="statsSubtext" data-itr="stats_time_alive"></span></div>
+                <div id="statsTimeLeaderboardContainer"><span class="stats-leaderboard-time" id="statsText"></span><span id="statsSubtext" data-itr="stats_leaderboard_time"></span></div>
+                <div id="statsPlayerCellsEatenContainer"><span class="stats-cells-eaten" id="statsText"></span><span id="statsSubtext" data-itr="stats_cells_eaten"></span></div>
+                <div id="statsTopPositionContainer"><span class="stats-top-position" id="statsText">?</span><span id="statsSubtext" data-itr="stats_top_position"></span></div>
+                <hr style="position:absolute;bottom:370px;width:100%;margin:0px"><button class="btn btn-primary" id="statsContinue" data-itr="continue" onclick="closeStats();"></button>
+                <hr style="position:absolute;bottom:255px;width:100%">
+            </div>
+        </div>
+    </div>
+    <div id="connecting" style="display: none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 100">
+        <div class="connecting-panel" style="width: 350px; background-color: #FFFFFF; margin: auto auto auto -175px; border-radius: 15px; padding: 5px 15px 5px 15px">
+            <h2 data-itr="connecting"></h2>
+            <p data-itr="connect_help"></p>
+        </div>
+    </div><canvas id="canvas" width="800" height="600"></canvas>
+    <div style="font-family:'Ubuntu'"> </div>
+    <script>
+        $(function() {
+            v72Init()
+            $('[data-itr]').each(function() {
+                var $this = $(this)
+                var itr = $this.attr('data-itr')
+                $this.html(i18n[itr] || itr)
+            })
+        })
+    </script>
+</body>
+
+
+</html>
